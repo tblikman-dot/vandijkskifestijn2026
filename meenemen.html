@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Wie neemt wat mee</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🧳 Wie neemt wat mee?</h1>
+<p>Kies je naam/gezin en vink af wat al in de auto ligt.</p>
+
+<select id="filter" onchange="render()">
+  <option value="all">Alles</option>
+  <option value="Jan Jaap">Jan Jaap</option>
+  <option value="Geessien & Tim">Geessien & Tim</option>
+  <option value="Sanne & Gert">Sanne & Gert</option>
+  <option value="Kim & Pieter">Kim & Pieter</option>
+  <option value="Koos & Jan">Koos & Jan</option>
+</select>
+
+<div id="lijst"></div>
+
+<p><a href="index.html">⬅️ Terug naar Home</a></p>
+
+<script>
+const data = {
+  "Ontbijt": [
+    ["Pindakaas (emmer)", "Jan Jaap"],
+    ["Hagelslag", "Geessien & Tim"],
+    ["Speculoos", "Geessien & Tim"],
+    ["Kaas", "Koos & Jan"],
+    ["Boter (2x bakjes)", "Geessien & Tim"],
+    ["Koffie + filters + thee", "Koos & Jan"],
+    ["Koffiemelk", "Koos & Jan"],
+    ["Appelstroop", "Geessien & Tim"],
+    ["Nutella", "Sanne & Gert"],
+    ["Appels", "Koos & Jan"],
+    ["Sinaasappels", "Kim & Pieter"],
+    ["Bananen", "Kim & Pieter"],
+    ["Muesli + havermout", "Geessien & Tim"],
+    ["Houdbare melk (1e dag)", "Geessien & Tim"]
+  ],
+  "Piste": [
+    ["Limonade blikken", "Jan Jaap"],
+    ["Muesli repen (kids)", "Sanne & Gert"],
+    ["Tussendoortjes (kids)", "Sanne & Gert"],
+    ["Ontbijtkoek (kids)", "Geessien & Tim"],
+    ["Pakjes drinken (kids)", "Kim & Pieter"]
+  ],
+  "Borrel": [
+    ["Kaas", "Jan Jaap"],
+    ["Worst & snacks", "Jan Jaap"],
+    ["Crackers & dips", "Jan Jaap"],
+    ["Olijven & extra’s", "Jan Jaap"],
+    ["Chips en nootjes", "Kim & Pieter"]
+  ],
+  "Dranken": [
+    ["Wijn (1 fles per gezin)", "Iedereen"]
+  ],
+  "Kids": [
+    ["Pannenkoekenbeslag", "Sanne & Gert"],
+    ["Stroop + poedersuiker", "Sanne & Gert"]
+  ],
+  "Avondeten": [
+    ["Eigen kookavondbenodigdheden", "Iedereen"]
+  ],
+  "Avond basis": [
+    ["Olijfolie (voor bakken + salade)", "Jan Jaap"],
+    ["Zout, peper, kruiden", "Jan Jaap"]
+  ],
+  "Piste lunch": [
+    ["Broodtrommel + drinkfles (kids)", "Iedereen"],
+    ["Boterhamzakjes", "Kim & Pieter"]
+  ],
+  "Overig": [
+    ["Aluminiumfolie", "Kim & Pieter"],
+    ["Vuilniszakken", "Koos & Jan"],
+    ["Beddengoed eigen gezin", "Iedereen"],
+    ["Handdoeken eigen gezin", "Iedereen"],
+    ["Hand- en theedoeken", "Koos & Jan"],
+    ["Dreft + afwasborstel", "Koos & Jan"],
+    ["Handzeep", "Kim & Pieter"],
+    ["Vaatwastabletjes", "Koos & Jan"]
+  ],
+  "Vertier": [
+    ["Rummikub", "Koos & Jan"],
+    ["30 Seconds", "Geessien & Tim"],
+    ["Hitster", "Kim & Pieter"],
+    ["Jenga", "Kim & Pieter"],
+    ["Bingo", "Geessien & Tim"],
+    ["Codenames", "Geessien & Tim"],
+    ["Coblo + Kapla", "Geessien & Tim"],
+    ["Overige kids spellen", "Iedereen"],
+    ["Stiften / kleurplaten / papier", "Kim & Pieter"]
+  ]
+};
+
+function render() {
+  const keuze = document.getElementById("filter").value;
+  const container = document.getElementById("lijst");
+  container.innerHTML = "";
+
+  Object.entries(data).forEach(([categorie, items]) => {
+    const zichtbaar = items.filter(
+      ([, wie]) => keuze === "all" || wie === keuze || wie === "Iedereen"
+    );
+
+    if (zichtbaar.length === 0) return;
+
+    const h2 = document.createElement("h2");
+    h2.textContent = categorie;
+    container.appendChild(h2);
+
+    const ul = document.createElement("ul");
+    zichtbaar.forEach(([artikel, wie]) => {
+      const li = document.createElement("li");
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+
+      const span = document.createElement("span");
+      span.textContent = artikel + " — " + wie;
+
+      li.appendChild(checkbox);
+      li.appendChild(span);
+      ul.appendChild(li);
+    });
+
+    container.appendChild(ul);
+  });
+}
+
+render();
+</script>
+
+</body>
+</html>
