@@ -1,138 +1,38 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <title>Wie neemt wat mee</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Wie neemt wat mee</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<h1>🧳 Wie neemt wat mee</h1>
+<p>Bron: Excel (leidend)</p>
 
-<h1>🧳 Wie neemt wat mee?</h1>
-<p>Kies je naam/gezin en vink af wat al in de auto ligt.</p>
-
-<select id="filter" onchange="render()">
-  <option value="all">Alles</option>
-  <option value="Jan Jaap">Jan Jaap</option>
-  <option value="Geessien & Tim">Geessien & Tim</option>
-  <option value="Sanne & Gert">Sanne & Gert</option>
-  <option value="Kim & Pieter">Kim & Pieter</option>
-  <option value="Koos & Jan">Koos & Jan</option>
+<select id="filter" onchange="filterItems()">
+<option value="all">Alles</option>
+<option value='Jan Jaap'>Jan Jaap</option><option value='Geessien & Tim'>Geessien & Tim</option><option value='Sanne & Gert'>Sanne & Gert</option><option value='Kim & Pieter'>Kim & Pieter</option><option value='Koos & Jan'>Koos & Jan</option>
 </select>
-
-<div id="lijst"></div>
-
-<p><a href="index.html">⬅️ Terug naar Home</a></p>
-
+<h2>Ontbijt</h2><ul class='cat'><li data-wie='Kim & Pieter'>Pindakaas emmer</li><li data-wie='Geessien & Tim'>Hagelslag</li><li data-wie='Geessien & Tim'>Speculoos</li><li data-wie='Koos & Jan'>Kaas</li><li data-wie='Geessien & Tim'>Boter (2x bakjes)</li><li data-wie='Koos & Jan'>Koffiemelk</li><li data-wie='Geessien & Tim'>Appelstroop</li><li data-wie='Kim & Pieter'>Nutella</li><li data-wie='Koos & Jan'>Appels </li><li data-wie='Sanne & Gert'>Sinaasappels</li><li data-wie='Sanne & Gert'>Bananen</li><li data-wie='Geessien & Tim'>Muesli + havermout</li><li data-wie='Geessien & Tim'>Houdbare melk (1e dag)</li></ul><h2>Ontbijt </h2><ul class='cat'><li data-wie='Koos & Jan'>Koffie + filters + thee</li></ul><h2>Piste</h2><ul class='cat'><li data-wie='Jan Jaap'>Limonade blikken</li><li data-wie='Kim & Pieter'>Muesli repen (kids)</li><li data-wie='Kim & Pieter'>Tussendoortjes (kids)</li><li data-wie='Geessien & Tim'>Ontbijkoek (kids)</li><li data-wie='Sanne & Gert'>Pakjes drinken (kids)</li></ul><h2>Borrel</h2><ul class='cat'><li data-wie='Jan Jaap'>Kaas</li><li data-wie='Jan Jaap'>Worst & snacks</li><li data-wie='Jan Jaap'>Crackers & dips</li><li data-wie='Jan Jaap'>Olijven & extra’s</li><li data-wie='Sanne & Gert'>Chips en nootjes </li></ul><h2>Dranken</h2><ul class='cat'><li data-wie='Iedereen'>Wijn (flesje per gezin mee?) (Iedereen)</li></ul><h2>Kids </h2><ul class='cat'><li data-wie='Kim & Pieter'>Pannenkoekenbeslag </li><li data-wie='Kim & Pieter'>Stroop + poedersuiker</li></ul><h2>Avondeten</h2><ul class='cat'><li data-wie='Iedereen'>Eigen kookavondbenodigdheden  (Iedereen)</li></ul><h2>Avond basis</h2><ul class='cat'><li data-wie='Jan Jaap'>Olijfolie (voor bakken + salade)</li><li data-wie='Jan Jaap'>Zout, peper, kruiden </li></ul><h2>Piste lunch</h2><ul class='cat'><li data-wie='Jan Jaap'>Broodtrommel + drinkfles (kids)</li><li data-wie='Geessien & Tim'>Broodtrommel + drinkfles (kids)</li><li data-wie='Sanne & Gert'>Broodtrommel + drinkfles (kids)</li><li data-wie='Kim & Pieter'>Broodtrommel + drinkfles (kids)</li><li data-wie='Sanne & Gert'>Boterhamzakjes (lunch maken)</li></ul><h2>Overig</h2><ul class='cat'><li data-wie='Sanne & Gert'>Aluminiumfolie </li><li data-wie='Koos & Jan'>Vuilniszakken </li><li data-wie='Iedereen'>Beddengoed eigen gezin (iom Koosje?) (Iedereen)</li><li data-wie='Iedereen'>Handdoeken eigen gezin (Iedereen)</li><li data-wie='Koos & Jan'>Hand- en theedoeken  </li><li data-wie='Koos & Jan'>Dreft + afwasborstel</li><li data-wie='Sanne & Gert'>Handzeep</li><li data-wie='Koos & Jan'>Vaatwastabletjes</li></ul><h2>Vertier</h2><ul class='cat'><li data-wie='Koos & Jan'>Rummikub</li><li data-wie='Geessien & Tim'>30 seconds</li><li data-wie='Sanne & Gert'>Hitster </li><li data-wie='Sanne & Gert'>Jenga</li><li data-wie='Geessien & Tim'>Bingo</li><li data-wie='Geessien & Tim'>Codenames</li><li data-wie='Geessien & Tim'>Coblo + Kapla</li><li data-wie='Iedereen'>Overige kids spellen (WJZLFWIL) (Iedereen)</li><li data-wie='Sanne & Gert'>Stiften/potloden / kleurplaten - papier </li><li data-wie='Kim & Pieter'>Stiften/potloden / kleurplaten - papier </li></ul>
 <script>
-const data = {
-  "Ontbijt": [
-    ["Pindakaas (emmer)", "Jan Jaap"],
-    ["Hagelslag", "Geessien & Tim"],
-    ["Speculoos", "Geessien & Tim"],
-    ["Kaas", "Koos & Jan"],
-    ["Boter (2x bakjes)", "Geessien & Tim"],
-    ["Koffie + filters + thee", "Koos & Jan"],
-    ["Koffiemelk", "Koos & Jan"],
-    ["Appelstroop", "Geessien & Tim"],
-    ["Nutella", "Sanne & Gert"],
-    ["Appels", "Koos & Jan"],
-    ["Sinaasappels", "Kim & Pieter"],
-    ["Bananen", "Kim & Pieter"],
-    ["Muesli + havermout", "Geessien & Tim"],
-    ["Houdbare melk (1e dag)", "Geessien & Tim"]
-  ],
-  "Piste": [
-    ["Limonade blikken", "Jan Jaap"],
-    ["Muesli repen (kids)", "Sanne & Gert"],
-    ["Tussendoortjes (kids)", "Sanne & Gert"],
-    ["Ontbijtkoek (kids)", "Geessien & Tim"],
-    ["Pakjes drinken (kids)", "Kim & Pieter"]
-  ],
-  "Borrel": [
-    ["Kaas", "Jan Jaap"],
-    ["Worst & snacks", "Jan Jaap"],
-    ["Crackers & dips", "Jan Jaap"],
-    ["Olijven & extra’s", "Jan Jaap"],
-    ["Chips en nootjes", "Kim & Pieter"]
-  ],
-  "Dranken": [
-    ["Wijn (1 fles per gezin)", "Iedereen"]
-  ],
-  "Kids": [
-    ["Pannenkoekenbeslag", "Sanne & Gert"],
-    ["Stroop + poedersuiker", "Sanne & Gert"]
-  ],
-  "Avondeten": [
-    ["Eigen kookavondbenodigdheden", "Iedereen"]
-  ],
-  "Avond basis": [
-    ["Olijfolie (voor bakken + salade)", "Jan Jaap"],
-    ["Zout, peper, kruiden", "Jan Jaap"]
-  ],
-  "Piste lunch": [
-    ["Broodtrommel + drinkfles (kids)", "Iedereen"],
-    ["Boterhamzakjes", "Kim & Pieter"]
-  ],
-  "Overig": [
-    ["Aluminiumfolie", "Kim & Pieter"],
-    ["Vuilniszakken", "Koos & Jan"],
-    ["Beddengoed eigen gezin", "Iedereen"],
-    ["Handdoeken eigen gezin", "Iedereen"],
-    ["Hand- en theedoeken", "Koos & Jan"],
-    ["Dreft + afwasborstel", "Koos & Jan"],
-    ["Handzeep", "Kim & Pieter"],
-    ["Vaatwastabletjes", "Koos & Jan"]
-  ],
-  "Vertier": [
-    ["Rummikub", "Koos & Jan"],
-    ["30 Seconds", "Geessien & Tim"],
-    ["Hitster", "Kim & Pieter"],
-    ["Jenga", "Kim & Pieter"],
-    ["Bingo", "Geessien & Tim"],
-    ["Codenames", "Geessien & Tim"],
-    ["Coblo + Kapla", "Geessien & Tim"],
-    ["Overige kids spellen", "Iedereen"],
-    ["Stiften / kleurplaten / papier", "Kim & Pieter"]
-  ]
-};
-
-function render() {
-  const keuze = document.getElementById("filter").value;
-  const container = document.getElementById("lijst");
-  container.innerHTML = "";
-
-  Object.entries(data).forEach(([categorie, items]) => {
-    const zichtbaar = items.filter(
-      ([, wie]) => keuze === "all" || wie === keuze || wie === "Iedereen"
-    );
-
-    if (zichtbaar.length === 0) return;
-
-    const h2 = document.createElement("h2");
-    h2.textContent = categorie;
-    container.appendChild(h2);
-
-    const ul = document.createElement("ul");
-    zichtbaar.forEach(([artikel, wie]) => {
-      const li = document.createElement("li");
-
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-
-      const span = document.createElement("span");
-      span.textContent = artikel + " — " + wie;
-
-      li.appendChild(checkbox);
-      li.appendChild(span);
-      ul.appendChild(li);
-    });
-
-    container.appendChild(ul);
-  });
+function filterItems(){
+ const k=document.getElementById('filter').value;
+ document.querySelectorAll('ul.cat').forEach(ul=>{
+   let visible=0;
+   ul.querySelectorAll('li').forEach(li=>{
+     if(k==='all'||li.dataset.wie===k||li.dataset.wie==='Iedereen'){
+       li.style.display='list-item';
+       visible++;
+     } else {
+       li.style.display='none';
+     }
+   });
+   ul.style.display = visible ? 'block' : 'none';
+   ul.previousElementSibling.style.display = visible ? 'block' : 'none';
+ });
 }
-
-render();
+filterItems();
 </script>
 
-</body>
-</html>
+<p><a href="index.html">⬅️ Home</a></p>
+</body></html>

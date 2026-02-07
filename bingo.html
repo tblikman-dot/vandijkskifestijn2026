@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>BINGO kaart 🎉</title>
+<link rel="stylesheet" href="bingo.css">
+</head>
+<body>
+
+<h1>🎲 Bingo kaart</h1>
+<p>Klik je nummers aan. Heb je ze allemaal? Dan is het feest 🎉</p>
+
+<button onclick="generateCard()">🎟️ Nieuwe bingokaart</button>
+
+<div id="bingo-card"></div>
+
+<div id="bingo-message" class="hidden">
+  <h1>🎉 BINGO!!! 🎉</h1>
+  <p class="spin">Je bent een dijk van een speler 🕺</p>
+</div>
+
+<audio id="clickSound" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg"></audio>
+<audio id="bingoSound" src="https://actions.google.com/sounds/v1/alarms/party_horn.ogg"></audio>
+
+<script>
+function generateCard() {
+  const card = document.getElementById("bingo-card");
+  card.innerHTML = "";
+  document.getElementById("bingo-message").classList.add("hidden");
+
+  const pool = Array.from({length: 90}, (_, i) => i + 1);
+  const selected = pool.sort(() => Math.random() - 0.5).slice(0, 15);
+
+  selected.forEach(num => {
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    cell.textContent = num;
+    cell.onclick = () => toggle(cell);
+    card.appendChild(cell);
+  });
+}
+
+function toggle(cell) {
+  cell.classList.toggle("marked");
+  document.getElementById("clickSound").play();
+  checkBingo();
+}
+
+function checkBingo() {
+  const marked = document.querySelectorAll(".cell.marked").length;
+  if (marked === 15) {
+    document.getElementById("bingo-message").classList.remove("hidden");
+    document.getElementById("bingoSound").play();
+    confetti();
+  }
+}
+
+function confetti() {
+  for (let i = 0; i < 200; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
+}
+</script>
+
+</body>
+</html>
