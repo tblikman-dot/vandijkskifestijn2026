@@ -1,7 +1,85 @@
 
-body{margin:0;font-family:system-ui,Arial,sans-serif;background:#f2f6f4;color:#1e3d2b}
-.header{text-align:center;padding:16px;background:linear-gradient(135deg,#1e7f5c,#6fd3f5)}
-.logo{width:140px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;padding:16px}
-.tile{background:white;border-radius:16px;padding:20px;text-align:center;text-decoration:none;color:#1e3d2b;font-size:18px}
-.today-card{background:white;margin:16px;padding:16px;border-radius:16px}
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background: #f2f6f4;
+  color: #1e3d2b;
+}
+
+.header {
+  text-align: center;
+  padding: 12px 16px;
+  background: #1e7f5c;
+  border-bottom: 6px solid #0f5f45;
+}
+
+.logo {
+  width: 120px;
+  max-width: 70%;
+  height: auto;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30,127,92,0.85);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.today-card {
+  background: white;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  padding: 16px;
+}
+
+.tile {
+  background: white;
+  border-radius: 18px;
+  padding: 28px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #1e3d2b;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 600px) {
+  .tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .tile {
+    font-size: 22px;
+    padding: 32px 24px;
+  }
+
+  .hero-text {
+    font-size: 26px;
+  }
+}
