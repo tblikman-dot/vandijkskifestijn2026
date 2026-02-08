@@ -2,58 +2,282 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Ski & piste</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎿 Ski & piste</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    main { margin: 16px; }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      line-height: 1.7;
+    }
+
+    .sub {
+      background: #f2f6f4;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .sub h3 { margin: 0 0 6px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    th, td {
+      padding: 8px 6px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th { font-weight: 700; }
+
+    .muted {
+      opacity: .7;
+      font-size: 14px;
+    }
+
+    a {
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
 
-<h1>🎿 Ski & piste</h1>
+<header class="app-header">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <img src="logo-dijk-soft.png" alt="DIJK" class="app-logo">
+</header>
 
-<h2>📸 Webcam</h2>
-<ul>
-  <li><a href="https://panocam.zillertalarena.com/filzstein" target="_blank">
-    Live webcam Filzstein (Hochkrimml)</a></li>
-</ul>
+<nav id="sideMenu" class="side-menu">
+  <a href="index.html">🏠 Home</a>
+  <a href="verblijf.html">🏡 Verblijf</a>
+  <a href="meenemen.html">🎒 Meenemen</a>
+  <a href="onderweg.html">🚗 Onderweg</a>
+  <a href="ski.html">🎿 Ski</a>
+  <a href="bingo.html">🎲 Bingo</a>
+  <a href="sos.html">🚨 SOS</a>
+</nav>
 
-<h2>🌤️ Weer & sneeuw</h2>
-<ul>
-  <li><a href="https://www.meteoblue.com/nl/weer/week/hochkrimml_oostenrijk_7581158" target="_blank">
-    Weer Hochkrimml (Meteoblue – 7 dagen)</a></li>
-  <li><a href="https://www.wintersport.nl/weersneeuw" target="_blank">
-    Roel’s weerberichten (Wintersport.nl)</a></li>
-</ul>
+<div id="menuOverlay" onclick="toggleMenu()"></div>
 
-<h2>🎿 Skiverhuur – openingstijden</h2>
+<main>
 
-<h3>Krimml Ortszentrum</h3>
-<p>
-<strong>Ma–Vr</strong><br>
-08:00 – 12:00<br>
-14:30 – 18:00
-</p>
-<p>
-<strong>Zaterdag</strong><br>
-08:00 – 12:00<br>
-15:00 – 17:30
-</p>
-<p>
-<strong>Zondag</strong><br>
-08:30 – 11:00<br>
-15:30 – 17:30
-</p>
+  <!-- TITEL -->
+  <div class="card">
+    <h1>🎿 Ski & piste</h1>
+  </div>
 
-<h3>Hochkrimml Filzsteinalm</h3>
-<p><strong>Dagelijks</strong><br>09:00 – 16:30</p>
+  <!-- KINDERLAND -->
+  <div class="card">
+    <h2>🧒 Kinderland Hochkrimml – pistekaart</h2>
+    <p>
+      Overzicht van het kinderland bij Filzstein, inclusief lopende banden,
+      oefenliften en skischool.
+    </p>
+    <p>
+      👉
+      <a href="https://www.skischulekrimml.com/nl/plattegrond-sksischool-krimml.html"
+         target="_blank">
+        Pistekaart kinderland Hochkrimml
+      </a>
+    </p>
+  </div>
 
-<h2>💶 Skiverhuur prijzen & reserveren</h2>
-<ul>
-  <li><a href="https://www.lachmayer.com/fileadmin/documents/Skiverleihprospekt_12S_GP_2025_Lachmayer_Ansicht3.pdf" target="_blank">
-    Prijslijst skiverhuur (PDF)</a></li>
-  <li><a href="https://rmxob.shop/Pages/Home.aspx" target="_blank">
-    Online boeken – 10% korting</a></li>
-</ul>
+  <!-- SKIGEBIED -->
+  <div class="card">
+    <h2>🗺️ Pistekaart – volledig skigebied</h2>
+    <p>
+      <a href="https://vcdn.bergfex.at/images/resized/12/8799c370e159c512_e087ad688f23b7e2@2x.jpg"
+         target="_blank">
+        Pistekaart Zillertal Arena (groot)
+      </a>
+    </p>
+  </div>
 
-<p><a href="index.html">⬅️ Terug naar Home</a></p>
+  <!-- WEBCAM -->
+  <div class="card">
+    <h2>📸 Webcam</h2>
+    <ul>
+      <li>
+        <a href="https://panocam.zillertalarena.com/filzstein" target="_blank">
+          Live webcam Filzstein (Hochkrimml)
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- WEER -->
+  <div class="card">
+    <h2>🌤️ Weer & sneeuw</h2>
+    <ul>
+      <li>
+        <a href="https://www.meteoblue.com/nl/weer/week/hochkrimml_oostenrijk_7581158"
+           target="_blank">
+          Weer Hochkrimml (Meteoblue – 7 dagen)
+        </a>
+      </li>
+      <li>
+        <a href="https://www.wintersport.nl/weersneeuw" target="_blank">
+          Roel’s weerberichten (Wintersport.nl)
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SKIBUS -->
+  <div class="card">
+    <h2>🚌 Skibus</h2>
+    <p><strong>Lahnsiedlung → Hochkrimml Filzstein</strong></p>
+
+    <ul>
+      <li>
+        <a href="https://app.tracords.com/assets/customers/arena/netzplan/pinzgau.png"
+           target="_blank">
+          Netwerkkaart skibus Pinzgau
+        </a>
+      </li>
+      <li>
+        <a href="https://app.tracords.com/assets/customers/arena/netzplan/Pinzgau_Winter_2025-26.pdf"
+           target="_blank">
+          Volledig tijdschema (PDF)
+        </a>
+      </li>
+    </ul>
+
+    <div class="sub">
+      <h3>Ochtend – heen</h3>
+      <table>
+        <tr><th>Vertrek</th><th>Aankomst</th></tr>
+        <tr><td>08:34</td><td>09:00</td></tr>
+        <tr><td>08:54</td><td>09:20</td></tr>
+        <tr><td>09:14</td><td>09:40</td></tr>
+        <tr><td>09:29</td><td>09:55</td></tr>
+        <tr><td>10:04</td><td>10:30</td></tr>
+        <tr><td>10:29</td><td>10:55</td></tr>
+        <tr><td>11:04</td><td>11:30</td></tr>
+      </table>
+    </div>
+
+    <div class="sub">
+      <h3>Middag – terug</h3>
+      <table>
+        <tr><th>Vertrek</th><th>Aankomst</th></tr>
+        <tr><td>13:10</td><td>13:32</td></tr>
+        <tr><td>14:10</td><td>14:32</td></tr>
+        <tr><td>14:55</td><td>15:17</td></tr>
+        <tr><td>15:55</td><td>16:17</td></tr>
+        <tr><td>16:10</td><td>16:32</td></tr>
+        <tr><td>16:30</td><td>16:52</td></tr>
+        <tr><td>17:05</td><td>17:27</td></tr>
+      </table>
+      <p class="muted">Laatste aankomst is na 17:00.</p>
+    </div>
+  </div>
+
+  <!-- SKIVERHUUR LACHMAYER -->
+  <div class="card">
+    <h2>🎿 Skiverhuur – Lachmayer</h2>
+
+    <div class="sub">
+      <h3>Krimml Ortszentrum</h3>
+      <p><strong>Ma–Vr</strong><br>08:00 – 12:00<br>14:30 – 18:00</p>
+      <p><strong>Zaterdag</strong><br>08:00 – 12:00<br>15:00 – 17:30</p>
+      <p><strong>Zondag</strong><br>08:30 – 11:00<br>15:30 – 17:30</p>
+    </div>
+
+    <div class="sub">
+      <h3>Hochkrimml Filzsteinalm</h3>
+      <p><strong>Dagelijks</strong><br>09:00 – 16:30</p>
+    </div>
+
+    <ul>
+      <li>
+        <a href="https://www.lachmayer.com/fileadmin/documents/Skiverleihprospekt_12S_GP_2025_Lachmayer_Ansicht3.pdf"
+           target="_blank">
+          Prijslijst skiverhuur (PDF)
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SKIVERHUUR SHOP WALD -->
+  <div class="card">
+    <h2>🎿 Skiverhuur – Shop Wald</h2>
+
+    <div class="sub">
+      <h3>Winter</h3>
+      <p><strong>Zo–Do</strong><br>08:00 – 12:00<br>15:00 – 17:00</p>
+      <p><strong>Vr & Za</strong><br>08:00 – 18:00</p>
+    </div>
+
+    <div class="sub">
+      <h3>Zomer</h3>
+      <p><strong>Ma–Vr</strong><br>08:00 – 12:00<br>15:00 – 18:00</p>
+      <p><strong>Zaterdag</strong><br>08:00 – 12:00</p>
+    </div>
+
+    <ul>
+      <li>
+        <a href="https://share.google/G44Ey6trjm7lr1U5O" target="_blank">
+          Prijslijst skiverhuur – Shop Wald
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- WANDELINGEN -->
+  <div class="card">
+    <h2>🚶‍♀️ Gezins-winterwandelingen</h2>
+
+    <div class="sub">
+      <h3>🌲 Winterwandeling vanuit Lahn</h3>
+      <p>
+        Route: Lahn → Salzach winterpad → richting Wald → zelfde weg terug
+      </p>
+      <p>
+        Afstand: ± 3 km · Duur: 45–60 min · Hoogteverschil: vlak · Moeilijkheid: heel makkelijk
+      </p>
+      <p class="muted">
+        Beste tijd 11:00–15:30 · Winterwandelschoenen volstaan · Skibus terug mogelijk
+      </p>
+    </div>
+
+    <div class="sub">
+      <h3>🏔️ Winterwandeling Filzsteinalm</h3>
+      <p>
+        Route: Filzsteinalm → Winterpanoramaweg → terug
+      </p>
+      <p>
+        Afstand: ± 2,6 km · Duur: ± 45 min · Hoogteverschil: ± 60 m
+      </p>
+      <p class="muted">
+        Zonnig & windstil ideaal · Warme drank bij Filzsteinalm · Skibus vlakbij
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function toggleMenu(){
+  document.getElementById('sideMenu').classList.toggle('open');
+  document.getElementById('menuOverlay').classList.toggle('show');
+}
+</script>
 
 </body>
 </html>

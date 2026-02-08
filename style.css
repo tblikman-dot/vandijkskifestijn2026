@@ -19,11 +19,11 @@ body {
   height: auto;
 }
 
-/* HERO – hogere banner */
+/* HERO – gegarandeerd zichtbaar */
 .hero {
   position: relative;
   width: 100%;
-  height: 280px;   /* x2 hoogte */
+  height: 140px;        /* GSM standaard */
   overflow: hidden;
   display: block;
 }
@@ -38,14 +38,14 @@ body {
 
 .hero-text {
   position: absolute;
-  bottom: 14px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(30,127,92,0.85);
   color: white;
-  padding: 10px 20px;
-  border-radius: 16px;
-  font-size: 24px;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -80,15 +80,6 @@ body {
 
 /* GSM */
 @media (max-width: 600px) {
-  .hero {
-    height: 280px;  /* ook op mobiel x2 */
-  }
-
-  .hero-text {
-    font-size: 22px;
-    padding: 8px 18px;
-  }
-
   .tiles {
     grid-template-columns: 1fr;
   }
@@ -102,11 +93,11 @@ body {
 /* Desktop */
 @media (min-width: 900px) {
   .hero {
-    height: 360px;
+    height: 200px;
   }
 
   .hero-text {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   .header {
@@ -117,3 +108,16 @@ body {
     width: 140px;
   }
 }
+
+
+/* HEADER + MENU */
+.app-header{position:sticky;top:0;z-index:1000;height:72px;background:#1f7f5c;display:flex;align-items:center;justify-content:center}
+.app-logo{height:48px;width:48px;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.menu-btn{position:absolute;left:16px;font-size:26px;background:none;border:none;color:white;cursor:pointer}
+.side-menu{position:fixed;top:0;left:-260px;width:240px;height:100%;background:white;box-shadow:4px 0 20px rgba(0,0,0,.2);padding:88px 16px;display:flex;flex-direction:column;gap:14px;transition:.3s;z-index:1100}
+.side-menu a{text-decoration:none;font-size:18px;font-weight:600;color:#143}
+.side-menu.open{left:0}
+#menuOverlay{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s;z-index:1050}
+#menuOverlay.show{opacity:1;pointer-events:auto}
+
+.no-logo .app-logo{display:none}

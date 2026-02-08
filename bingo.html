@@ -1,23 +1,138 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<title>BINGO kaart 🎉</title>
-<link rel="stylesheet" href="bingo.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🎲 Bingo</title>
+
+  <!-- Centrale styling -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Bingo-specifieke styling -->
+  <style>
+    .content {
+      margin: 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card h1 {
+      margin-top: 0;
+    }
+
+    .card button {
+      margin: 16px 0;
+      padding: 14px 22px;
+      border-radius: 24px;
+      border: none;
+      font-size: 18px;
+      font-weight: 700;
+      background: #1e7f5c;
+      color: white;
+      cursor: pointer;
+    }
+
+    #bingo-card {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .cell {
+      background: #f2f6f4;
+      border-radius: 12px;
+      padding: 18px 0;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .cell.marked {
+      background: #1e7f5c;
+      color: white;
+    }
+
+    #bingo-message {
+      margin-top: 24px;
+      padding: 20px;
+      background: #e6f7ef;
+      border-radius: 18px;
+      color: #1e7f5c;
+      font-weight: 800;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .spin {
+      animation: spin 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(-2deg); }
+      to { transform: rotate(2deg); }
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 8px;
+      height: 8px;
+      animation: fall 3s linear forwards;
+      z-index: 2000;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<h1>🎲 Bingo kaart</h1>
-<p>Klik je nummers aan. Heb je ze allemaal? Dan is het feest 🎉</p>
+<header class="app-header">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <img src="logo-dijk-soft.png" alt="DIJK" class="app-logo">
+</header>
 
-<button onclick="generateCard()">🎟️ Nieuwe bingokaart</button>
+<nav id="sideMenu" class="side-menu">
+  <a href="index.html">🏠 Home</a>
+  <a href="verblijf.html">🏡 Verblijf</a>
+  <a href="meenemen.html">🎒 Meenemen</a>
+  <a href="onderweg.html">🚗 Onderweg</a>
+  <a href="ski.html">🎿 Ski</a>
+  <a href="bingo.html">🎲 Bingo</a>
+  <a href="sos.html">🚨 SOS</a>
+</nav>
 
-<div id="bingo-card"></div>
+<div id="menuOverlay" onclick="toggleMenu()"></div>
 
-<div id="bingo-message" class="hidden">
-  <h1>🎉 BINGO!!! 🎉</h1>
-  <p class="spin">Je bent een dijk van een speler 🕺</p>
-</div>
+<main class="content">
+  <div class="card">
+    <h1>🎲 Bingo</h1>
+    <p>Klik je nummers aan. Heb je ze allemaal? Dan is het feest 🎉</p>
+
+    <button onclick="generateCard()">🎟️ Nieuwe bingokaart</button>
+
+    <div id="bingo-card"></div>
+
+    <div id="bingo-message" class="hidden">
+      <h2>🎉 BINGO!!! 🎉</h2>
+      <p class="spin">Je bent een dijk van een speler 🕺</p>
+    </div>
+  </div>
+</main>
 
 <audio id="clickSound" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg"></audio>
 <audio id="bingoSound" src="https://actions.google.com/sounds/v1/alarms/party_horn.ogg"></audio>
@@ -56,7 +171,7 @@ function checkBingo() {
 }
 
 function confetti() {
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 150; i++) {
     const c = document.createElement("div");
     c.className = "confetti";
     c.style.left = Math.random() * 100 + "vw";
@@ -64,6 +179,11 @@ function confetti() {
     document.body.appendChild(c);
     setTimeout(() => c.remove(), 3000);
   }
+}
+
+function toggleMenu(){
+  document.getElementById('sideMenu').classList.toggle('open');
+  document.getElementById('menuOverlay').classList.toggle('show');
 }
 </script>
 

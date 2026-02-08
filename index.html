@@ -8,6 +8,24 @@
 </head>
 <body>
 
+<header class="app-header no-logo">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <img src="logo-dijk-soft.png" alt="DIJK" class="app-logo">
+</header>
+
+<nav id="sideMenu" class="side-menu">
+  <a href="index.html">🏠 Home</a>
+  <a href="verblijf.html">🏡 Verblijf</a>
+  <a href="meenemen.html">🎒 Meenemen</a>
+  <a href="onderweg.html">🚗 Onderweg</a>
+  <a href="ski.html">🎿 Ski</a>
+  <a href="bingo.html">🎲 Bingo</a>
+  <a href="sos.html">🚨 SOS</a>
+</nav>
+
+<div id="menuOverlay" onclick="toggleMenu()"></div>
+
+
 <header class="header">
   <img src="logo-dijk-soft.png" alt="DIJK logo" class="logo">
 </header>
@@ -55,6 +73,14 @@ if (schema[vandaag]) {
   `;
 } else {
   inhoud.textContent = "Geen rooster voor vandaag.";
+}
+</script>
+
+
+<script>
+function toggleMenu(){
+  document.getElementById('sideMenu').classList.toggle('open');
+  document.getElementById('menuOverlay').classList.toggle('show');
 }
 </script>
 

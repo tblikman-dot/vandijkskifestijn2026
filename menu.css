@@ -1,0 +1,50 @@
+
+.topbar{
+  background:#1f7f5c;
+  height:88px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.menu-btn{
+  position:absolute;
+  left:16px;
+  font-size:28px;
+  background:none;
+  border:none;
+  color:white;
+}
+
+.header-logo{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+}
+
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:240px;
+  height:100%;
+  background:white;
+  box-shadow:4px 0 16px rgba(0,0,0,.2);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  transition:.3s;
+  z-index:1000;
+}
+
+.side-menu.open{
+  left:0;
+}
+
+.side-menu a{
+  text-decoration:none;
+  font-size:18px;
+  color:#143;
+}

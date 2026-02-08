@@ -1,99 +1,167 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <title>Onderweg & Verkeer</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🚗 Onderweg & Verkeer</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    main { margin: 16px; }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      line-height: 1.7;
+    }
+
+    .warning {
+      background: #fff6e6;
+      border-left: 6px solid #f0a500;
+    }
+
+    .route {
+      background: #f2f6f4;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .route h3 {
+      margin: 0 0 6px;
+    }
+
+    .muted {
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    .planb {
+      margin-top: 8px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    a {
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-<h1>🚗 Onderweg & Verkeer</h1>
+<header class="app-header">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <img src="logo-dijk-soft.png" alt="DIJK" class="app-logo">
+</header>
 
-<p>
-<strong>Wisseldag (zaterdag)</strong> – veel Nederlandse wintersporters.<br>
-Gebruik onderstaande volgorde zoals in een vakantie‑app: <br>
-<strong>Duitsland = data</strong>, <strong>Oostenrijk = webcams</strong>.
-</p>
+<nav id="sideMenu" class="side-menu">
+  <a href="index.html">🏠 Home</a>
+  <a href="verblijf.html">🏡 Verblijf</a>
+  <a href="meenemen.html">🎒 Meenemen</a>
+  <a href="onderweg.html">🚗 Onderweg</a>
+  <a href="ski.html">🎿 Ski</a>
+  <a href="bingo.html">🎲 Bingo</a>
+  <a href="sos.html">🚨 SOS</a>
+</nav>
 
-<hr>
+<div id="menuOverlay" onclick="toggleMenu()"></div>
 
-<h2>🇩🇪 Duitsland – zo beslis je</h2>
-<p>
-Voor Duitse snelwegen zijn webcams <strong>beperkt betrouwbaar</strong>.<br>
-Gebruik hier vooral <strong>data i.p.v. beeld</strong>.
-</p>
+<main>
 
-<ul>
-  <li>
-    🚦 <strong>ADAC (leidend)</strong><br>
-    Filelengte, oorzaak en vertraging in minuten.<br>
-    👉 <a href="https://www.adac.de/verkehr/verkehrsinformationen/" target="_blank">
-    ADAC verkeersinformatie</a>
-  </li>
-  <li>
-    🗺️ <strong>Google Maps (ondersteunend)</strong><br>
-    Live snelheid en filelengte (crowd‑sourced).
-  </li>
-  <li>
-    📷 <strong>BayernInfo (check)</strong><br>
-    Alleen gebruiken om te zien <em>of het nog rijdt</em>.<br>
-    👉 <a href="https://www.bayerninfo.de/de/verkehrskameras/" target="_blank">
-    BayernInfo webcams</a>
-  </li>
-</ul>
+  <div class="card">
+    <h1>🚗 Onderweg & Verkeer</h1>
+  </div>
 
-<hr>
+  <div class="card warning">
+    <strong>⚠️ Wisseldag (zaterdag)</strong><br>
+    Veel Nederlandse wintersporters onderweg.<br>
+    <strong>Duitsland = verkeersdata</strong><br>
+    <strong>Oostenrijk = webcams</strong>
+  </div>
 
-<h2>🇩🇪 Routepunten Duitsland + Plan B</h2>
+  <div class="card">
+    <h2>🇩🇪 Duitsland – zo beslis je</h2>
+    <p>
+      Webcams zijn hier beperkt betrouwbaar.<br>
+      Gebruik vooral <strong>verkeersdata</strong>.
+    </p>
 
-<h3>1️⃣ A9 Ingolstadt / Manching (±5 uur)</h3>
-<p>
-<strong>Plan B:</strong><br>
-Is het hier al rood/traag? → neem <strong>lange pauze vóór München</strong> 
-(brandstof/eten). Doorrijden richting A99 loont dan vaak niet.
-</p>
+    <ul>
+      <li>
+        🚦 <a href="https://www.adac.de/verkehr/verkehrslage/" target="_blank">
+          <strong>ADAC</strong> – filelengte & vertraging
+        </a>
+      </li>
+      <li>
+        🗺️ <a href="https://www.google.com/maps" target="_blank">
+          <strong>Google Maps</strong> – live snelheid
+        </a>
+      </li>
+      <li>
+        📷 <a href="https://www.bayerninfo.de/en/map?bounds=50.561%2C8.776054%2C47.27%2C14.037946&traffic=all" target="_blank">
+          <strong>BayernInfo</strong> – animatie files Duitsland-zuid
+        </a>
+      </li>
+    </ul>
 
-<h3>2️⃣ A99 München Ring (±4 uur)</h3>
-<p>
-<strong>Plan B:</strong><br>
-Ring volledig vast? → <strong>accepteer vertraging</strong>.
-Niet binnendoor rijden: alternatieven lopen vrijwel altijd vast.
-</p>
+    <div class="route">
+      <h3>1️⃣ A9 Ingolstadt / Manching</h3>
+      <div class="muted">± 5 uur voor aankomst Wald im Pinzgau</div>
+      <div class="planb"><strong>Plan B:</strong> rood/traag → lange pauze vóór München</div>
+    </div>
 
-<h3>3️⃣ A93 Kiefersfelden (±3 uur)</h3>
-<p>
-<strong>Plan B:</strong><br>
-File vóór Kufstein? → <strong>stop vóór de grens</strong>.
-Na de grens is pauzeren of keren vrijwel onmogelijk.
-</p>
+    <div class="route">
+      <h3>2️⃣ A99 München Ring</h3>
+      <div class="muted">± 4 uur voor aankomst</div>
+      <div class="planb"><strong>Plan B:</strong> volledig vast → niet binnendoor</div>
+    </div>
 
-<hr>
+    <div class="route">
+      <h3>3️⃣ A93 Kiefersfelden</h3>
+      <div class="muted">± 3 uur voor aankomst</div>
+      <div class="planb"><strong>Plan B:</strong> file → stop vóór de grens</div>
+    </div>
+  </div>
 
-<h2>🇦🇹 Oostenrijk – webcams zijn hier leidend</h2>
-<p>
-Vanaf Oostenrijk zijn webcams <strong>zeer betrouwbaar</strong> 
-en doorslaggevend voor beslissingen.
-</p>
+  <div class="card">
+    <h2>🇦🇹 Oostenrijk – webcams leidend</h2>
+    <p>Vanaf hier zijn webcams doorslaggevend.</p>
 
-<h3>4️⃣ B178 Ellmau – Loferer Straße (±2 uur)</h3>
-<p>
-👉 <a href="https://www.tirol.gv.at/verkehr/strassenbau-und-strassenerhaltung/webcams/webcams-bezirk-kufstein/b-178-loferer-strasse/" target="_blank">
-Officiële webcam Land Tirol</a><br>
-<strong>Plan B:</strong><br>
-Ellmau vast maar Pass Thurn nog goed? → <strong>meestal doorrijden loont</strong>.
-Ellmau loopt vaak later leeg.
-</p>
+    <div class="route">
+      <h3>4️⃣ B178 Ellmau</h3>
+      <div class="muted">± 2 uur voor aankomst</div>
+      <a href="https://www.tirol.gv.at/verkehr/strassenbau-und-strassenerhaltung/webcams/webcams-bezirk-kufstein/b-178-loferer-strasse/" target="_blank">
+        📷 Webcam
+      </a>
+      <div class="planb"><strong>Plan B:</strong> Ellmau vast maar Pass Thurn goed → doorrijden</div>
+    </div>
 
-<h3>5️⃣ B161 Pass Thurn (±1 uur)</h3>
-<p>
-👉 <a href="https://www.tirol.gv.at/verkehr/strassenbau-und-strassenerhaltung/webcams/webcams-bezirk-kitzbuehel/b-161-pass-thurn-strasse/" target="_blank">
-Officiële webcam Land Tirol</a><br>
-<strong>Plan B:</strong><br>
-Wit/traag? → reken <strong>+30–45 min</strong>.  
-Hierna geen echte alternatieven meer tot Wald im Pinzgau.
-</p>
+    <div class="route">
+      <h3>5️⃣ B161 Pass Thurn</h3>
+      <div class="muted">± 1 uur voor aankomst</div>
+      <a href="https://www.tirol.gv.at/verkehr/strassenbau-und-strassenerhaltung/webcams/webcams-bezirk-kitzbuehel/b-161-pass-thurn-strasse/" target="_blank">
+        📷 Webcam
+      </a>
+      <div class="planb"><strong>Plan B:</strong> wit/traag → +30–45 min</div>
+    </div>
+  </div>
 
-<p><a href="index.html">⬅️ Home</a></p>
+</main>
+
+<script>
+function toggleMenu(){
+  document.getElementById('sideMenu').classList.toggle('open');
+  document.getElementById('menuOverlay').classList.toggle('show');
+}
+</script>
 
 </body>
 </html>
